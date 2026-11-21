@@ -11,3 +11,4 @@
 ./verilog/sram_32b_w2048.v
 ./verilog/sram_128b_w2048.v
 ./verilog/sfp.v
+./verilog/corelet.v
