@@ -12,3 +12,5 @@
 ./verilog/sram_128b_w2048.v
 ./verilog/sfp.v
 ./verilog/corelet.v
+./verilog/core.v
+./tb/core_tb.v
