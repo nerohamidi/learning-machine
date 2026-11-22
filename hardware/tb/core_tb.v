@@ -11,11 +11,13 @@ parameter len_onij = 16;
 parameter col = 8;
 parameter row = 8;
 parameter len_nij = 36;
+parameter PSUM_BASE = 11'd0;     // psum SRAM: kij*len_nij + nij  (0..323)
+parameter OUT_BASE  = 11'd324;   // psum SRAM: final (acc + ReLU) outputs
 
 reg clk = 0;
 reg reset = 1;
 
-wire [33:0] inst_q; 
+wire [34:0] inst_q;   // bit 34 = pmem_sel_sfp (write sfp_out instead of OFIFO data into pmem)
 
 reg [1:0]  inst_w_q = 0; 
 reg [bw*row-1:0] D_xmem_q = 0;
@@ -40,6 +42,8 @@ reg execute_q = 0;
 reg load_q = 0;
 reg acc_q = 0;
 reg acc = 0;
+reg sel_sfp_q = 0;
+reg sel_sfp = 0;
 
 reg [1:0]  inst_w; 
 reg [bw*row-1:0] D_xmem;
@@ -66,6 +70,7 @@ integer captured_data;
 integer t, i, j, k, kij;
 integer error;
 
+assign inst_q[34] = sel_sfp_q;
 assign inst_q[33] = acc_q;
 assign inst_q[32] = CEN_pmem_q;
 assign inst_q[31] = WEN_pmem_q;
@@ -98,6 +103,9 @@ initial begin
   CEN_xmem = 1;
   WEN_xmem = 1;
   A_xmem   = 0;
+  CEN_pmem = 1;
+  WEN_pmem = 1;
+  A_pmem   = 0;
   ofifo_rd = 0;
   ififo_wr = 0;
   ififo_rd = 0;
@@ -105,6 +113,8 @@ initial begin
   l0_wr    = 0;
   execute  = 0;
   load     = 0;
+  acc      = 0;
+  sel_sfp  = 0;
 
   $dumpfile("core_tb.vcd");
   $dumpvars(0,core_tb);
@@ -131,7 +141,7 @@ initial begin
   #0.5 clk = 1'b1;   
   /////////////////////////
 
-  /////// Activation data writing to memory ///////
+  /////// Activation data writing to memory (L1 / xmem, DRAM emulated) ///////
   for (t=0; t<len_nij; t=t+1) begin  
     #0.5 clk = 1'b0;  x_scan_file = $fscanf(x_file,"%32b", D_xmem); WEN_xmem = 0; CEN_xmem = 0; if (t>0) A_xmem = A_xmem + 1;
     #0.5 clk = 1'b1;   
@@ -183,7 +193,7 @@ initial begin
 
 
 
-    /////// Kernel data writing to memory ///////
+    /////// Kernel data writing to memory (L1 / xmem) ///////
 
     A_xmem = 11'b10000000000;
 
@@ -194,18 +204,39 @@ initial begin
 
     #0.5 clk = 1'b0;  WEN_xmem = 1;  CEN_xmem = 1; A_xmem = 0;
     #0.5 clk = 1'b1; 
+    $fclose(w_file);
     /////////////////////////////////////
 
 
 
     /////// Kernel data writing to L0 ///////
-    //...
+    // xmem read (CEN=0, WEN=1) at cycle t -> data valid one cycle later,
+    // so l0_wr is asserted from cycle t=1 through t=col (col+1 cycles total).
+    A_xmem = 11'b10000000000;
+    for (t=0; t<col+1; t=t+1) begin
+      #0.5 clk = 1'b0;
+        if (t<col) begin
+          CEN_xmem = 0; WEN_xmem = 1;
+          if (t>0) A_xmem = A_xmem + 1;
+        end else begin
+          CEN_xmem = 1; WEN_xmem = 1;
+        end
+        l0_wr = (t>0) ? 1 : 0;
+      #0.5 clk = 1'b1;
+    end
+
+    #0.5 clk = 1'b0;  l0_wr = 0; CEN_xmem = 1; WEN_xmem = 1; A_xmem = 0;
+    #0.5 clk = 1'b1; 
     /////////////////////////////////////
 
 
 
     /////// Kernel loading to PEs ///////
-    //...
+    // L0 streams the weights out; PEs latch them with load=1.
+    for (t=0; t<col; t=t+1) begin
+      #0.5 clk = 1'b0;  l0_rd = 1; load = 1;
+      #0.5 clk = 1'b1;
+    end
     /////////////////////////////////////
   
 
@@ -224,13 +255,43 @@ initial begin
 
 
     /////// Activation data writing to L0 ///////
-    //...
+    // Same read-then-write pattern as the kernel, from xmem addr 0..len_nij-1.
+    A_xmem = 0;
+    for (t=0; t<len_nij+1; t=t+1) begin
+      #0.5 clk = 1'b0;
+        if (t<len_nij) begin
+          CEN_xmem = 0; WEN_xmem = 1;
+          if (t>0) A_xmem = A_xmem + 1;
+        end else begin
+          CEN_xmem = 1; WEN_xmem = 1;
+        end
+        l0_wr = (t>0) ? 1 : 0;
+      #0.5 clk = 1'b1;
+    end
+
+    #0.5 clk = 1'b0;  l0_wr = 0; CEN_xmem = 1; WEN_xmem = 1; A_xmem = 0;
+    #0.5 clk = 1'b1; 
     /////////////////////////////////////
 
 
 
     /////// Execution ///////
-    //...
+    // l0_rd feeds one activation vector per cycle into the array; execute
+    // enables the MACs.
+    for (t=0; t<len_nij; t=t+1) begin
+      #0.5 clk = 1'b0;  l0_rd = 1; execute = 1;
+      #0.5 clk = 1'b1;
+    end
+
+    #0.5 clk = 1'b0;  l0_rd = 0; execute = 0;
+    #0.5 clk = 1'b1;
+
+    // drain: ofifo_valid only means every column has >=1 word, not that all 36
+    // words arrived, so use a fixed wait for the last column to finish
+    for (i=0; i<(row+col+10); i=i+1) begin
+      #0.5 clk = 1'b0;
+      #0.5 clk = 1'b1;
+    end
     /////////////////////////////////////
 
 
@@ -238,62 +299,89 @@ initial begin
     //////// OFIFO READ ////////
     // Ideally, OFIFO should be read while execution, but we have enough ofifo
     // depth so we can fetch out after execution.
-    //...
+    // Each OFIFO word (col*psum_bw = 128b) is written to psum SRAM at
+    // PSUM_BASE + kij*len_nij + t.
+    // ofifo.v registers rd (rd_en <= rd), so the FIFO pointer moves one cycle
+    // after ofifo_rd.  The pmem write therefore starts one cycle AFTER ofifo_rd
+    // (otherwise word 0 is written twice).
+    A_pmem = PSUM_BASE + kij*len_nij;
+    for (t=0; t<len_nij+1; t=t+1) begin
+      #0.5 clk = 1'b0;
+        ofifo_rd = (t<len_nij) ? 1 : 0;
+        if (t>0) begin
+          CEN_pmem = 0; WEN_pmem = 0;
+          if (t>1) A_pmem = A_pmem + 1;
+        end
+      #0.5 clk = 1'b1;
+    end
+
+    #0.5 clk = 1'b0;  ofifo_rd = 0; CEN_pmem = 1; WEN_pmem = 1; A_pmem = 0;
+    #0.5 clk = 1'b1;
     /////////////////////////////////////
 
 
   end  // end of kij loop
 
 
-  ////////// Accumulation /////////
+  ////////// Accumulation + ReLU /////////
   out_file = $fopen("out.txt", "r");  
+  acc_file = $fopen("acc_address.txt", "r");   // psum SRAM address list: 9 addresses per output pixel
 
   // Following three lines are to remove the first three comment lines of the file
-  out_scan_file = $fscanf(out_file,"%s", answer); 
-  out_scan_file = $fscanf(out_file,"%s", answer); 
-  out_scan_file = $fscanf(out_file,"%s", answer); 
+  out_scan_file = $fscanf(out_file,"%s", captured_data); 
+  out_scan_file = $fscanf(out_file,"%s", captured_data); 
+  out_scan_file = $fscanf(out_file,"%s", captured_data); 
+  // If acc_address.txt also has a 3-line header, skip it the same way:
+  // acc_scan_file = $fscanf(acc_file,"%s", captured_data); (x3)
 
   error = 0;
 
-
-
   $display("############ Verification Start during accumulation #############"); 
 
-  for (i=0; i<len_onij+1; i=i+1) begin 
+  for (i=0; i<len_onij; i=i+1) begin 
 
-    #0.5 clk = 1'b0; 
-    #0.5 clk = 1'b1; 
-
-    if (i>0) begin
-     out_scan_file = $fscanf(out_file,"%128b", answer); // reading from out file to answer
-       if (sfp_out == answer)
-         $display("%2d-th output featuremap Data matched! :D", i); 
-       else begin
-         $display("%2d-th output featuremap Data ERROR!!", i); 
-         $display("sfpout: %128b", sfp_out);
-         $display("answer: %128b", answer);
-         error = 1;
-       end
-    end
-   
- 
+    // clear the SFU accumulator
     #0.5 clk = 1'b0; reset = 1;
     #0.5 clk = 1'b1;  
     #0.5 clk = 1'b0; reset = 0; 
     #0.5 clk = 1'b1;  
 
+    // ---- Accumulation: read the 9 kij psums of output pixel i from psum SRAM ----
+    // address at cycle j, acc at cycle j+1 (SRAM read latency)
     for (j=0; j<len_kij+1; j=j+1) begin 
 
       #0.5 clk = 1'b0;   
         if (j<len_kij) begin CEN_pmem = 0; WEN_pmem = 1; acc_scan_file = $fscanf(acc_file,"%11b", A_pmem); end
                        else  begin CEN_pmem = 1; WEN_pmem = 1; end
 
-        if (j>0)  acc = 1;  
+        if (j>0)  acc = 1;   // psum data arrives one cycle after the read
       #0.5 clk = 1'b1;   
     end
 
     #0.5 clk = 1'b0; acc = 0;
     #0.5 clk = 1'b1; 
+
+    // idle cycle: sfp_out is valid (ReLU is applied inside sfp.v on its output)
+    #0.5 clk = 1'b0;
+    #0.5 clk = 1'b1;
+
+    // ---- Check result (sfp_out = ReLU(accumulated sum)) ----
+    out_scan_file = $fscanf(out_file,"%128b", answer);
+    if (sfp_out == answer)
+      $display("%2d-th output featuremap Data matched! :D", i+1); 
+    else begin
+      $display("%2d-th output featuremap Data ERROR!!", i+1); 
+      $display("sfpout: %128b", sfp_out);
+      $display("answer: %128b", answer);
+      error = 1;
+    end
+
+    // ---- Store the final (accumulated + ReLU) result back to psum SRAM ----
+    #0.5 clk = 1'b0; CEN_pmem = 0; WEN_pmem = 0; A_pmem = OUT_BASE + i; sel_sfp = 1;
+    #0.5 clk = 1'b1;
+    #0.5 clk = 1'b0; CEN_pmem = 1; WEN_pmem = 1; A_pmem = 0; sel_sfp = 0;
+    #0.5 clk = 1'b1;
+
   end
 
 
@@ -304,6 +392,7 @@ initial begin
   end
 
   $fclose(acc_file);
+  $fclose(out_file);
   //////////////////////////////////
 
   for (t=0; t<10; t=t+1) begin  
@@ -326,6 +415,7 @@ always @ (posedge clk) begin
    A_xmem_q   <= A_xmem;
    ofifo_rd_q <= ofifo_rd;
    acc_q      <= acc;
+   sel_sfp_q  <= sel_sfp;
    ififo_wr_q <= ififo_wr;
    ififo_rd_q <= ififo_rd;
    l0_rd_q    <= l0_rd;
@@ -336,7 +426,3 @@ end
 
 
 endmodule
-
-
-
-
