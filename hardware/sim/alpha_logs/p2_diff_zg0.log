@@ -1,0 +1,8 @@
+dir=stim_p2  mode=differential  nij=324 onij=256 frames=4
+outputs checked: 4 frames x 256 vectors (8192 values), mismatches: 0, control errors: 0
+passes: 45 (5 per kij x 9 kij) | PE weight loads: 9 | execute cycles: 14580
+cycles: DRAM->xmem 1706 | compute (kernel load + exec + OFIFO->SFU->pmem) 15094 | reconstruction 1026 | total 17842
+activity: MACs issued 933120, zero-guarded 0 (0.0%) | toggles: a_q 1529000  b_q 2279  product 2945974  c_q 4973106  (sum 9450359) | reg write-enable bits 22042496
+sram: xmem rd 14652 wr 1692 | wmem rd 0 wr 0 | pmem rd 12544 wr 12288 (rd/wr incl. DRAM->L1 fills)
+RESULT: PASS
+core_tb_p2.v:344: $finish called at 17853000 (1ps)

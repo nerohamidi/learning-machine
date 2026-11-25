@@ -1,0 +1,40 @@
+== stim_os_rand zg=0
+outputs checked: 32 vectors (256 values), mismatches: 0
+cycles: L1 load 404 | compute (stream+drain+write-back) 516 | total 934 | tiles 4 | execute 400
+activity: MACs issued 25600, zero-guarded 0 (0.0%) | toggles: a_q 52704  b_q 50800  product 124734  c_q 109968  (sum 338206) | reg write-enable bits 647168
+RESULT: PASS
+== stim_os_rand zg=1
+outputs checked: 32 vectors (256 values), mismatches: 0
+cycles: L1 load 404 | compute (stream+drain+write-back) 516 | total 934 | tiles 4 | execute 400
+activity: MACs issued 25600, zero-guarded 0 (0.0%) | toggles: a_q 52704  b_q 50800  product 124734  c_q 109968  (sum 338206) | reg write-enable bits 647168
+RESULT: PASS
+== stim_os_f27 zg=0
+outputs checked: 16 vectors (128 values), mismatches: 0
+cycles: L1 load 219 | compute (stream+drain+write-back) 202 | total 435 | tiles 2 | execute 144
+activity: MACs issued 9216, zero-guarded 0 (0.0%) | toggles: a_q 3208  b_q 17352  product 11521  c_q 9792  (sum 41873) | reg write-enable bits 237568
+RESULT: PASS
+== stim_os_f27 zg=1
+outputs checked: 16 vectors (128 values), mismatches: 0
+cycles: L1 load 219 | compute (stream+drain+write-back) 202 | total 435 | tiles 2 | execute 144
+activity: MACs issued 9216, zero-guarded 7741 (84.0%) | toggles: a_q 2080  b_q 15184  product 11521  c_q 9792  (sum 38577) | reg write-enable bits 79760
+RESULT: PASS
+== stim_os_f24 zg=0
+outputs checked: 16 vectors (128 values), mismatches: 0
+cycles: L1 load 9228 | compute (stream+drain+write-back) 4678 | total 13920 | tiles 2 | execute 4608
+activity: MACs issued 294912, zero-guarded 0 (0.0%) | toggles: a_q 88944  b_q 522872  product 400702  c_q 119272  (sum 1131790) | reg write-enable bits 7094272
+RESULT: PASS
+== stim_os_f24 zg=1
+outputs checked: 16 vectors (128 values), mismatches: 0
+cycles: L1 load 9228 | compute (stream+drain+write-back) 4678 | total 13920 | tiles 2 | execute 4608
+activity: MACs issued 294912, zero-guarded 247604 (84.0%) | toggles: a_q 33936  b_q 406952  product 400702  c_q 119272  (sum 960862) | reg write-enable bits 1976704
+RESULT: PASS
+== stim_os_f29 zg=0
+outputs checked: 1024 vectors (8192 values), mismatches: 0
+cycles: L1 load 4818 | compute (stream+drain+write-back) 12928 | total 17760 | tiles 128 | execute 9216
+activity: MACs issued 589824, zero-guarded 0 (0.0%) | toggles: a_q 480240  b_q 1067240  product 1058615  c_q 883644  (sum 3489739) | reg write-enable bits 15204352
+RESULT: PASS
+== stim_os_f29 zg=1
+outputs checked: 1024 vectors (8192 values), mismatches: 0
+cycles: L1 load 4818 | compute (stream+drain+write-back) 12928 | total 17760 | tiles 128 | execute 9216
+activity: MACs issued 589824, zero-guarded 446271 (75.7%) | toggles: a_q 225280  b_q 795888  product 1058615  c_q 883644  (sum 2963427) | reg write-enable bits 5875792
+RESULT: PASS

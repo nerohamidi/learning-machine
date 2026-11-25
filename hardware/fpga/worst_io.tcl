@@ -1,0 +1,9 @@
+project_open corelet -revision corelet
+create_timing_netlist
+read_sdc
+update_timing_netlist
+set_operating_conditions 7_slow_1200mv_100c
+update_timing_netlist
+report_timing -setup -npaths 1 -detail full_path -file output_files/worst_path.rpt
+delete_timing_netlist
+project_close

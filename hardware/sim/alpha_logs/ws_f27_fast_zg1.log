@@ -1,0 +1,7 @@
+dir=stim_f27  itiles=1 otiles=1 relu=1 nij=36 onij=16  schedule=optimized
+outputs checked: 16 vectors (128 values), mismatches: 0, control errors: 0
+cycles: L1 load 46 | compute (kernel+L0+exec+OFIFO) 846 | accumulate 209 | ReLU 0 | total 1115
+activity: MACs issued 20736, zero-guarded 18144 (87.5%) | toggles: a_q 9236  b_q 2426  product 12098  c_q 61084  (sum 84844) | reg write-enable bits 1104192
+sram: xmem rd 396 wr 65 | wmem rd 0 wr 0 | pmem rd 144 wr 340 (rd/wr incl. DRAM->L1 fills)
+RESULT: PASS
+core_tb_tiled.v:366: $finish called at 1126000 (1ps)

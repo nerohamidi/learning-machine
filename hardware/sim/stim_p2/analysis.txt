@@ -1,0 +1,11 @@
+Part 2 analysis (layout 8ch x 16 x 16, W = features[27] 4-bit, 3x3, pad 1)
+W range [-7, 7]; X0 hi range [-6, 6], lo range [0, 15]
+dX1: range [-7, 7], zeros 22.1%, saturated at 4 bit 0.00%
+dX2: range [-7, 7], zeros 23.1%, saturated at 4 bit 0.00%
+dX3: range [-7, 7], zeros 23.8%, saturated at 4 bit 0.00%
+Y0 = 16*W*hi + W*lo equals W*X0: exact (max err 0)
+Y1: max |err| 0 | MSE 0 | SQNR inf dB | max|Y| 6067
+Y2: max |err| 0 | MSE 0 | SQNR inf dB | max|Y| 6180
+Y3: max |err| 0 | MSE 0 | SQNR inf dB | max|Y| 6003
+16-bit accumulator check (limit 32768): max|raw psum| 338 | max|Y0 partial| 6115 | max|D partial| 331 | max|conventional partial| 6180 | max|Y| 6180
+|D_i| max 331 vs |Y_i| max 6180 (deltas use 9.4 of 16 bits)

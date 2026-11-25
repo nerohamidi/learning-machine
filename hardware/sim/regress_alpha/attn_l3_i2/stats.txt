@@ -1,0 +1,10 @@
+layer 3 image 2 label 8 pred 8
+head 0 sh 2 max|S| 446 max|P| 706 zero phiQ 0.396 phiK 0.730 V 0.112 den0 0
+head 1 sh 3 max|S| 900 max|P| 1455 zero phiQ 0.311 phiK 0.615 V 0.105 den0 0
+head 2 sh 2 max|S| 447 max|P| 1329 zero phiQ 0.375 phiK 0.756 V 0.118 den0 0
+head 3 sh 2 max|S| 367 max|P| 1210 zero phiQ 0.381 phiK 0.752 V 0.098 den0 0
+head 4 sh 2 max|S| 400 max|P| 1013 zero phiQ 0.402 phiK 0.689 V 0.138 den0 0
+head 5 sh 2 max|S| 351 max|P| 1260 zero phiQ 0.402 phiK 0.732 V 0.094 den0 0
+head 6 sh 2 max|S| 256 max|P| 940 zero phiQ 0.400 phiK 0.732 V 0.100 den0 0
+head 7 sh 1 max|S| 184 max|P| 508 zero phiQ 0.414 phiK 0.840 V 0.116 den0 0
+prehook_error 2.980e-08

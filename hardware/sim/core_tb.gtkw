@@ -1,0 +1,43 @@
+[*] GTKWave save file for core_tb.vcd (open with: gtkwave core_tb.vcd core_tb.gtkw)
+[dumpfile] "core_tb.vcd"
+[savefile] "core_tb.gtkw"
+[timestart] 0
+[size] 1600 900
+[pos] -1 -1
+*-12.000000 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 260
+[signals_width] 360
+[sst_expanded] 1
+@200
+-control
+@28
+core_tb.clk
+core_tb.reset
+core_tb.load_q
+core_tb.execute_q
+core_tb.l0_wr_q
+core_tb.l0_rd_q
+core_tb.ofifo_rd_q
+core_tb.acc_q
+core_tb.relu_q
+core_tb.pmem_wsel_q
+@200
+-memories
+@22
+core_tb.core_instance.xmem_q[31:0]
+core_tb.A_pmem_q[10:0]
+core_tb.core_instance.pmem_q[127:0]
+@200
+-L0 / array
+@22
+core_tb.core_instance.corelet_instance.l0_out[31:0]
+core_tb.core_instance.corelet_instance.l0_instance.rd_en[7:0]
+core_tb.core_instance.corelet_instance.array_valid[7:0]
+core_tb.core_instance.corelet_instance.array_out[127:0]
+@200
+-OFIFO / SFU
+@28
+core_tb.ofifo_valid
+@22
+core_tb.core_instance.corelet_instance.ofifo_out[127:0]
+core_tb.sfp_out[127:0]

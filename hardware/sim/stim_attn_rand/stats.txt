@@ -1,0 +1,5 @@
+random
+head 0 sh 3 max|S| 851 max|P| 5950 zero phiQ 0.145 phiK 0.070 V 0.067 den0 5
+head 1 sh 3 max|S| 798 max|P| 5669 zero phiQ 0.066 phiK 0.174 V 0.065 den0 0
+head 2 sh 3 max|S| 744 max|P| 5646 zero phiQ 0.086 phiK 0.076 V 0.051 den0 0
+head 3 sh 3 max|S| 1021 max|P| 9022 zero phiQ 0.078 phiK 0.053 V 0.054 den0 0

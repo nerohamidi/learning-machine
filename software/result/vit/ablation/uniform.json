@@ -1,0 +1,7 @@
+{
+ "mixer": "uniform",
+ "epochs": 120,
+ "seed": 0,
+ "params": 601010,
+ "best_test": 81.41
+}

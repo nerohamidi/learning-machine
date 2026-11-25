@@ -1,0 +1,8 @@
+dir=stim_attn_rand  heads=4  N=64  zero gating=1
+checked per head: S (8x8 16b), S8 hi/lo (2x8 words), out+den (64 x 8 lanes); mismatches: 0, control errors: 0
+cycles: DRAM->L1 780 | phase A (OS state) 384 | requant 80 | phase B (2 WS passes + divider) 992 | total 2260
+cycles per head (on-chip, excl. DRAM): 364
+activity: MACs issued 49152, zero-guarded 5367 (10.9%) | toggles: a_q 91364  b_q 31996  product 150513  c_q 198842  (sum 472715) | reg write-enable bits 1640556
+sram: xmem rd 832 wr 64 | wmem rd 256 wr 4 | pmem rd 320 wr 544 (rd/wr incl. DRAM->L1 fills)
+RESULT: PASS
+core_tb_attn.v:333: $finish called at 2271000 (1ps)

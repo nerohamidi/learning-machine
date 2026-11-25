@@ -1,0 +1,11 @@
+software/data/
+software/result/vgg16_quant_4bit_squeeze8/model_best.pth.tar
+hardware/sim/compiled*
+*.vcd
+*.sof
+__pycache__/
+report/*.aux
+report/*.log
+report/*.out
+report/*.fls
+report/*.fdb_latexmk

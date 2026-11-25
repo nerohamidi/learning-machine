@@ -1,0 +1,46 @@
+VCD info: dumpfile core_tb.vcd opened for output.
+Raw psums (pmem[0..323], 324 x 16-bit x 8 cols): 0 mismatches
+############ Verification Start during accumulation #############
+ 0-th output featuremap Data matched! :D
+ 1-th output featuremap Data matched! :D
+ 2-th output featuremap Data matched! :D
+ 3-th output featuremap Data matched! :D
+ 4-th output featuremap Data matched! :D
+ 5-th output featuremap Data matched! :D
+ 6-th output featuremap Data matched! :D
+ 7-th output featuremap Data matched! :D
+ 8-th output featuremap Data matched! :D
+ 9-th output featuremap Data matched! :D
+10-th output featuremap Data matched! :D
+11-th output featuremap Data matched! :D
+12-th output featuremap Data matched! :D
+13-th output featuremap Data matched! :D
+14-th output featuremap Data matched! :D
+15-th output featuremap Data matched! :D
+############ Verification Start during ReLU #############
+ 0-th output featuremap after ReLU matched! :D
+ 1-th output featuremap after ReLU matched! :D
+ 2-th output featuremap after ReLU matched! :D
+ 3-th output featuremap after ReLU matched! :D
+ 4-th output featuremap after ReLU matched! :D
+ 5-th output featuremap after ReLU matched! :D
+ 6-th output featuremap after ReLU matched! :D
+ 7-th output featuremap after ReLU matched! :D
+ 8-th output featuremap after ReLU matched! :D
+ 9-th output featuremap after ReLU matched! :D
+10-th output featuremap after ReLU matched! :D
+11-th output featuremap after ReLU matched! :D
+12-th output featuremap after ReLU matched! :D
+13-th output featuremap after ReLU matched! :D
+14-th output featuremap after ReLU matched! :D
+15-th output featuremap after ReLU matched! :D
+------------------------------------------------------------
+raw psum mismatches            : 0 / 324
+accumulation mismatches        : 0 / 16
+ReLU mismatches                : 0 / 16
+stored output (pmem) mismatches: 0 / 16
+cycles: L1 load 118 | kernel load 423 | L0+exec 837 | OFIFO->pmem 351 | acc 240 | ReLU 112 | total 2210
+------------------------------------------------------------
+############ No error detected ##############
+########### Project Completed !! ############
+core_tb.v:473: $finish called at 2231000 (1ps)

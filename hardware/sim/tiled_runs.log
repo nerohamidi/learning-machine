@@ -1,0 +1,16 @@
+dir=stim_f24  itiles=32 otiles=1 relu=0 nij=36 onij=16  schedule=template
+outputs checked: 16 vectors (128 values), mismatches: 0, control errors: 0
+cycles: L1 load 1184 | compute (kernel+L0+exec+OFIFO) 57888 | accumulate 8208 | ReLU 0 | total 67292
+RESULT: PASS
+dir=stim_f24  itiles=32 otiles=1 relu=0 nij=36 onij=16  schedule=optimized
+outputs checked: 16 vectors (128 values), mismatches: 0, control errors: 0
+cycles: L1 load 1193 | compute (kernel+L0+exec+OFIFO) 27072 | accumulate 7184 | ReLU 0 | total 35461
+RESULT: PASS
+dir=stim_f29  itiles=1 otiles=64 relu=0 nij=36 onij=16  schedule=template
+outputs checked: 1024 vectors (8192 values), mismatches: 0, control errors: 0
+cycles: L1 load 37 | compute (kernel+L0+exec+OFIFO) 115776 | accumulate 15424 | ReLU 0 | total 131249
+RESULT: PASS
+dir=stim_f29  itiles=1 otiles=64 relu=0 nij=36 onij=16  schedule=optimized
+outputs checked: 1024 vectors (8192 values), mismatches: 0, control errors: 0
+cycles: L1 load 46 | compute (kernel+L0+exec+OFIFO) 54144 | accumulate 13376 | ReLU 0 | total 67578
+RESULT: PASS

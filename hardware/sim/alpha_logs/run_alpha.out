@@ -1,0 +1,25 @@
+part1_core_tb                ############ No error detected ##############
+ws_f27_fast_zg0              RESULT: PASS
+os_f27_zg0                   RESULT: PASS
+ws_f24_fast_zg0              RESULT: PASS
+os_f24_zg0                   RESULT: PASS
+ws_f29_fast_zg0              RESULT: PASS
+os_f29_zg0                   RESULT: PASS
+os_rand_zg0                  RESULT: PASS
+attn_l0_zg0                  RESULT: PASS
+attn_rand_zg0                RESULT: PASS
+ws_f27_fast_zg1              RESULT: PASS
+os_f27_zg1                   RESULT: PASS
+ws_f24_fast_zg1              RESULT: PASS
+os_f24_zg1                   RESULT: PASS
+ws_f29_fast_zg1              RESULT: PASS
+os_f29_zg1                   RESULT: PASS
+os_rand_zg1                  RESULT: PASS
+attn_l0_zg1                  RESULT: PASS
+attn_rand_zg1                RESULT: PASS
+ws_f27_template              RESULT: PASS
+ws_f24_template              RESULT: PASS
+ws_f29_template              RESULT: PASS
+p2_diff_zg0                  RESULT: PASS
+p2_conv                      RESULT: PASS
+p2_diff_zg1                  RESULT: PASS

@@ -1,0 +1,2 @@
+zero_frac_act 0.6944
+zero_frac_wgt 0.2330

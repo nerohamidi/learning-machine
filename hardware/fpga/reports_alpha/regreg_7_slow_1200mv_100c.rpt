@@ -1,0 +1,11 @@
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; regreg 7_slow_1200mv_100c                                                                                                                                                          ;
++--------+----------------------------------------------------------------------+------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                                                            ; To Node                      ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+----------------------------------------------------------------------+------------------------------+--------------+-------------+--------------+------------+------------+
+; -8.091 ; ofifo:ofifo_instance|fifo_depth64:col_num[5].fifo_instance|rd_ptr[0] ; sfu:sfu_instance|absor_q[2]  ; clk          ; clk         ; 4.000        ; -0.084     ; 12.005     ;
+; -7.940 ; ofifo:ofifo_instance|fifo_depth64:col_num[5].fifo_instance|rd_ptr[0] ; sfu:sfu_instance|absor_q[3]  ; clk          ; clk         ; 4.000        ; -0.078     ; 11.860     ;
+; -7.930 ; ofifo:ofifo_instance|fifo_depth64:col_num[5].fifo_instance|rd_ptr[0] ; sfu:sfu_instance|absor_q[2]  ; clk          ; clk         ; 4.000        ; -0.084     ; 11.844     ;
+; -7.896 ; ofifo:ofifo_instance|fifo_depth64:col_num[5].fifo_instance|rd_ptr[0] ; sfu:sfu_instance|absor_q[15] ; clk          ; clk         ; 4.000        ; 0.303      ; 12.197     ;
+; -7.883 ; ofifo:ofifo_instance|fifo_depth64:col_num[5].fifo_instance|rd_ptr[0] ; sfu:sfu_instance|absor_q[15] ; clk          ; clk         ; 4.000        ; 0.303      ; 12.184     ;
++--------+----------------------------------------------------------------------+------------------------------+--------------+-------------+--------------+------------+------------+

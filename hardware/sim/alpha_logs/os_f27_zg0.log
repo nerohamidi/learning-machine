@@ -1,0 +1,7 @@
+dir=stim_os_f27  OS: 2 pixel tiles x 1 oc tiles, K=72, relu=1, zero gating=0
+outputs checked: 16 vectors (128 values), mismatches: 0
+cycles: L1 load 219 | compute (stream+drain+write-back) 202 | total 437 | tiles 2 | execute 144
+activity: MACs issued 9216, zero-guarded 0 (0.0%) | toggles: a_q 3208  b_q 17352  product 11521  c_q 9792  (sum 41873) | reg write-enable bits 237568
+sram: xmem rd 144 wr 1 | wmem rd 144 wr 72 | pmem rd 0 wr 16 (rd/wr incl. DRAM->L1 fills)
+RESULT: PASS
+core_tb_os.v:255: $finish called at 448000 (1ps)

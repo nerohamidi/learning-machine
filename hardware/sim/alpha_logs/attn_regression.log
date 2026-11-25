@@ -1,0 +1,19 @@
+layer 0 image 0: PASS  mismatches 0  zero-guarded MACs 44.9%
+layer 0 image 1: PASS  mismatches 0  zero-guarded MACs 45.6%
+layer 0 image 2: PASS  mismatches 0  zero-guarded MACs 45.4%
+layer 1 image 0: PASS  mismatches 0  zero-guarded MACs 51.8%
+layer 1 image 1: PASS  mismatches 0  zero-guarded MACs 58.3%
+layer 1 image 2: PASS  mismatches 0  zero-guarded MACs 55.1%
+layer 2 image 0: PASS  mismatches 0  zero-guarded MACs 54.9%
+layer 2 image 1: PASS  mismatches 0  zero-guarded MACs 57.2%
+layer 2 image 2: PASS  mismatches 0  zero-guarded MACs 54.9%
+layer 3 image 0: PASS  mismatches 0  zero-guarded MACs 52.0%
+layer 3 image 1: PASS  mismatches 0  zero-guarded MACs 52.6%
+layer 3 image 2: PASS  mismatches 0  zero-guarded MACs 51.0%
+layer 4 image 0: PASS  mismatches 0  zero-guarded MACs 53.4%
+layer 4 image 1: PASS  mismatches 0  zero-guarded MACs 52.3%
+layer 4 image 2: PASS  mismatches 0  zero-guarded MACs 53.5%
+layer 5 image 0: PASS  mismatches 0  zero-guarded MACs 54.6%
+layer 5 image 1: PASS  mismatches 0  zero-guarded MACs 53.4%
+layer 5 image 2: PASS  mismatches 0  zero-guarded MACs 56.3%
+18/18 (layer, image) cases pass, 8 heads each

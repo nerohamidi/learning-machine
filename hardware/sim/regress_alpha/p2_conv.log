@@ -1,0 +1,6 @@
+dir=stim_p2  mode=conventional  nij=324 onij=256 frames=4
+outputs checked: 4 frames x 256 vectors (8192 values), mismatches: 0, control errors: 0
+passes: 72 (2 per kij x 9 kij x 4 frames) | PE weight loads: 36 | execute cycles: 23328
+cycles: DRAM->xmem 2681 | compute (kernel load + exec + OFIFO->SFU->pmem) 25384 | reconstruction 0 | total 28079
+RESULT: PASS
+core_tb_p2.v:337: $finish called at 28090000 (1ps)

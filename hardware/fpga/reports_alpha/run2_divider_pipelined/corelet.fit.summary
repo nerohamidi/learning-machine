@@ -1,0 +1,20 @@
+Fitter Status : Successful - Mon Nov 23 10:48:49 2026
+Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+Revision Name : corelet
+Top-level Entity Name : corelet
+Family : Cyclone IV GX
+Device : EP4CGX150DF31I7AD
+Timing Models : Final
+Total logic elements : 26,862 / 149,760 ( 18 % )
+    Total combinational functions : 21,905 / 149,760 ( 15 % )
+    Dedicated logic registers : 15,113 / 149,760 ( 10 % )
+Total registers : 15113
+Total pins : 346 / 508 ( 68 % )
+Total virtual pins : 0
+Total memory bits : 0 / 6,635,520 ( 0 % )
+Embedded Multiplier 9-bit elements : 64 / 720 ( 9 % )
+Total GXB Receiver Channel PCS : 0 / 8 ( 0 % )
+Total GXB Receiver Channel PMA : 0 / 8 ( 0 % )
+Total GXB Transmitter Channel PCS : 0 / 8 ( 0 % )
+Total GXB Transmitter Channel PMA : 0 / 8 ( 0 % )
+Total PLLs : 0 / 8 ( 0 % )

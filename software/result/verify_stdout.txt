@@ -1,0 +1,12 @@
+checkpoint epoch 53 | test accuracy = 91.65%
+features[27] = QuantConv2d(
+  8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (weight_quant): weight_quantize_fn()
+)  ->  features[28] = ReLU(inplace=True)
+wgt_alpha = 2.2397 (w_delta 0.3200) | act_alpha = 6.6878 (x_delta 0.4459)
+w_int (8, 8, 3, 3) range [-7, 7] | x_int (8, 4, 4) range [0, 10]
+array emulation: nij = 36, kij = 9, o_nij = 16 | max |out_int - conv(x_int, w_int)| = 0
+out_int range [-90, 194]
+max |psum_recovered - prehook(features[29])| = 3.815e-06  (mean 4.271e-07)
+whole batch (128 images): max error = 1.144e-05
+PASS (accuracy > 90% and error < 1e-3)

@@ -1,0 +1,7 @@
+{
+ "mixer": "none",
+ "epochs": 120,
+ "seed": 0,
+ "params": 414626,
+ "best_test": 81.89
+}

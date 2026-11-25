@@ -1,0 +1,7 @@
+dir=stim_os_rand  OS: 2 pixel tiles x 2 oc tiles, K=100, relu=0, zero gating=1
+outputs checked: 32 vectors (256 values), mismatches: 0
+cycles: L1 load 404 | compute (stream+drain+write-back) 516 | total 936 | tiles 4 | execute 400
+activity: MACs issued 25600, zero-guarded 0 (0.0%) | toggles: a_q 52704  b_q 50800  product 124734  c_q 109968  (sum 338206) | reg write-enable bits 647168
+sram: xmem rd 400 wr 1 | wmem rd 400 wr 200 | pmem rd 0 wr 32 (rd/wr incl. DRAM->L1 fills)
+RESULT: PASS
+core_tb_os.v:255: $finish called at 947000 (1ps)

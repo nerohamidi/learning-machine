@@ -1,0 +1,7 @@
+{
+ "mixer": "softmax",
+ "epochs": 120,
+ "seed": 0,
+ "params": 601010,
+ "best_test": 83.25
+}

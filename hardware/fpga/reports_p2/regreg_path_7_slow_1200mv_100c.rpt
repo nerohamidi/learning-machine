@@ -1,0 +1,135 @@
+----------------
+; Command Info ;
+----------------
+Report Timing: Found 1 setup paths (1 violated).  Worst case slack is -4.492 
+
+Tcl Command:
+    report_timing -setup -file output_files/regreg_path_7_slow_1200mv_100c.rpt -panel_name {regreg path 7_slow_1200mv_100c} -from [all_registers] -to [all_registers] -npaths 1 -detail full_path
+
+Options:
+    -from [all_registers] 
+    -to [all_registers] 
+    -setup 
+    -npaths 1 
+    -detail full_path 
+    -panel_name {regreg path 7_slow_1200mv_100c} 
+    -file {output_files/regreg_path_7_slow_1200mv_100c.rpt} 
+
+Delay Model:
+    Slow 1200mV 100C Model
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Summary of Paths                                                                                                                                                                                                                                                    ;
++--------+----------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                                                            ; To Node                                                                                                       ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+----------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; -4.492 ; ofifo:ofifo_instance|fifo_depth64:col_num[2].fifo_instance|wr_ptr[5] ; ofifo:ofifo_instance|fifo_depth64:col_num[2].fifo_instance|fifo_mux_2_1:fifo_mux_2_1c|gen[2].G2~41_OTERM29481 ; clk          ; clk         ; 4.000        ; -0.133     ; 8.357      ;
++--------+----------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+Path #1: Setup slack is -4.492 (VIOLATED)
+===============================================================================
++------------------------------------------------------------------------------------------------------------------------------------+
+; Path Summary                                                                                                                       ;
++--------------------+---------------------------------------------------------------------------------------------------------------+
+; Property           ; Value                                                                                                         ;
++--------------------+---------------------------------------------------------------------------------------------------------------+
+; From Node          ; ofifo:ofifo_instance|fifo_depth64:col_num[2].fifo_instance|wr_ptr[5]                                          ;
+; To Node            ; ofifo:ofifo_instance|fifo_depth64:col_num[2].fifo_instance|fifo_mux_2_1:fifo_mux_2_1c|gen[2].G2~41_OTERM29481 ;
+; Launch Clock       ; clk                                                                                                           ;
+; Latch Clock        ; clk                                                                                                           ;
+; Data Arrival Time  ; 11.817                                                                                                        ;
+; Data Required Time ; 7.325                                                                                                         ;
+; Slack              ; -4.492 (VIOLATED)                                                                                             ;
++--------------------+---------------------------------------------------------------------------------------------------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Setup Relationship     ; 4.000  ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.133 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 8.357  ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 9     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 2.157       ; 62         ; 0.000 ; 1.766 ;
+;    Cell                ;        ; 3     ; 1.303       ; 38         ; 0.000 ; 0.702 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 10    ; 5.489       ; 66         ; 0.000 ; 1.646 ;
+;    Cell                ;        ; 11    ; 2.636       ; 32         ; 0.000 ; 0.441 ;
+;    uTco                ;        ; 1     ; 0.232       ; 3          ; 0.232 ; 0.232 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 2.051       ; 62         ; 0.000 ; 1.676 ;
+;    Cell                ;        ; 3     ; 1.260       ; 38         ; 0.000 ; 0.702 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                                                                                                            ;
++----------+---------+----+------+--------+--------------------+---------------------------------------------------------------------------------------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location           ; Element                                                                                                       ;
++----------+---------+----+------+--------+--------------------+---------------------------------------------------------------------------------------------------------------+
+; 0.000    ; 0.000   ;    ;      ;        ;                    ; launch edge time                                                                                              ;
+; 3.460    ; 3.460   ;    ;      ;        ;                    ; clock path                                                                                                    ;
+;   0.000  ;   0.000 ;    ;      ;        ;                    ; source latency                                                                                                ;
+;   0.000  ;   0.000 ;    ;      ; 1      ; PIN_W15            ; clk                                                                                                           ;
+;   0.000  ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X57_Y0_N15  ; clk~input|i                                                                                                   ;
+;   0.702  ;   0.702 ; RR ; CELL ; 1      ; IOIBUF_X57_Y0_N15  ; clk~input|o                                                                                                   ;
+;   1.093  ;   0.391 ; RR ; IC   ; 1      ; CLKCTRL_G29        ; clk~inputclkctrl|inclk[0]                                                                                     ;
+;   1.093  ;   0.000 ; RR ; CELL ; 12624  ; CLKCTRL_G29        ; clk~inputclkctrl|outclk                                                                                       ;
+;   2.859  ;   1.766 ; RR ; IC   ; 1      ; FF_X68_Y59_N17     ; ofifo_instance|col_num[2].fifo_instance|wr_ptr[5]|clk                                                         ;
+;   3.460  ;   0.601 ; RR ; CELL ; 1      ; FF_X68_Y59_N17     ; ofifo:ofifo_instance|fifo_depth64:col_num[2].fifo_instance|wr_ptr[5]                                          ;
+; 11.817   ; 8.357   ;    ;      ;        ;                    ; data path                                                                                                     ;
+;   3.692  ;   0.232 ;    ; uTco ; 1      ; FF_X68_Y59_N17     ; ofifo:ofifo_instance|fifo_depth64:col_num[2].fifo_instance|wr_ptr[5]                                          ;
+;   3.692  ;   0.000 ; FF ; CELL ; 66     ; FF_X68_Y59_N17     ; ofifo_instance|col_num[2].fifo_instance|wr_ptr[5]|q                                                           ;
+;   4.605  ;   0.913 ; FF ; IC   ; 1      ; LCCOMB_X69_Y63_N4  ; ofifo_instance|col_num[2].fifo_instance|Equal0~2|dataa                                                        ;
+;   5.016  ;   0.411 ; FR ; CELL ; 2      ; LCCOMB_X69_Y63_N4  ; ofifo_instance|col_num[2].fifo_instance|Equal0~2|combout                                                      ;
+;   5.752  ;   0.736 ; RR ; IC   ; 1      ; LCCOMB_X69_Y59_N26 ; ofifo_instance|col_num[2].fifo_instance|Equal0~4|datac                                                        ;
+;   6.039  ;   0.287 ; RR ; CELL ; 2      ; LCCOMB_X69_Y59_N26 ; ofifo_instance|col_num[2].fifo_instance|Equal0~4|combout                                                      ;
+;   6.268  ;   0.229 ; RR ; IC   ; 1      ; LCCOMB_X69_Y59_N24 ; ofifo_instance|col_num[2].fifo_instance|rd_ptr[4]~11|datac                                                    ;
+;   6.541  ;   0.273 ; RF ; CELL ; 7      ; LCCOMB_X69_Y59_N24 ; ofifo_instance|col_num[2].fifo_instance|rd_ptr[4]~11|combout                                                  ;
+;   6.844  ;   0.303 ; FF ; IC   ; 1      ; LCCOMB_X69_Y59_N20 ; ofifo_instance|col_num[2].fifo_instance|rd_ptr[5]_NEW4148|datad                                               ;
+;   6.995  ;   0.151 ; FR ; CELL ; 163    ; LCCOMB_X69_Y59_N20 ; ofifo_instance|col_num[2].fifo_instance|rd_ptr[5]_NEW4148|combout                                             ;
+;   8.641  ;   1.646 ; RR ; IC   ; 1      ; LCCOMB_X59_Y56_N18 ; ofifo_instance|col_num[2].fifo_instance|fifo_mux_2_1c|gen[2].G2~2|dataa                                       ;
+;   9.082  ;   0.441 ; RF ; CELL ; 1      ; LCCOMB_X59_Y56_N18 ; ofifo_instance|col_num[2].fifo_instance|fifo_mux_2_1c|gen[2].G2~2|combout                                     ;
+;   9.307  ;   0.225 ; FF ; IC   ; 1      ; LCCOMB_X59_Y56_N4  ; ofifo_instance|col_num[2].fifo_instance|fifo_mux_2_1c|gen[2].G2~3|datad                                       ;
+;   9.434  ;   0.127 ; FF ; CELL ; 1      ; LCCOMB_X59_Y56_N4  ; ofifo_instance|col_num[2].fifo_instance|fifo_mux_2_1c|gen[2].G2~3|combout                                     ;
+;   9.666  ;   0.232 ; FF ; IC   ; 1      ; LCCOMB_X59_Y56_N22 ; ofifo_instance|col_num[2].fifo_instance|fifo_mux_2_1c|gen[2].G2~6|datac                                       ;
+;   9.949  ;   0.283 ; FF ; CELL ; 1      ; LCCOMB_X59_Y56_N22 ; ofifo_instance|col_num[2].fifo_instance|fifo_mux_2_1c|gen[2].G2~6|combout                                     ;
+;   10.889 ;   0.940 ; FF ; IC   ; 1      ; LCCOMB_X58_Y60_N24 ; ofifo_instance|col_num[2].fifo_instance|fifo_mux_2_1c|gen[2].G2~9|datad                                       ;
+;   11.016 ;   0.127 ; FF ; CELL ; 1      ; LCCOMB_X58_Y60_N24 ; ofifo_instance|col_num[2].fifo_instance|fifo_mux_2_1c|gen[2].G2~9|combout                                     ;
+;   11.281 ;   0.265 ; FF ; IC   ; 1      ; LCCOMB_X58_Y60_N28 ; ofifo_instance|col_num[2].fifo_instance|fifo_mux_2_1c|gen[2].G2~41|datab                                      ;
+;   11.711 ;   0.430 ; FF ; CELL ; 1      ; LCCOMB_X58_Y60_N28 ; ofifo_instance|col_num[2].fifo_instance|fifo_mux_2_1c|gen[2].G2~41|combout                                    ;
+;   11.711 ;   0.000 ; FF ; IC   ; 1      ; FF_X58_Y60_N29     ; ofifo_instance|col_num[2].fifo_instance|fifo_mux_2_1c|gen[2].G2~41_NEW_REG29480|d                             ;
+;   11.817 ;   0.106 ; FF ; CELL ; 1      ; FF_X58_Y60_N29     ; ofifo:ofifo_instance|fifo_depth64:col_num[2].fifo_instance|fifo_mux_2_1:fifo_mux_2_1c|gen[2].G2~41_OTERM29481 ;
++----------+---------+----+------+--------+--------------------+---------------------------------------------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Data Required Path                                                                                                                                                         ;
++---------+---------+----+------+--------+-------------------+---------------------------------------------------------------------------------------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location          ; Element                                                                                                       ;
++---------+---------+----+------+--------+-------------------+---------------------------------------------------------------------------------------------------------------+
+; 4.000   ; 4.000   ;    ;      ;        ;                   ; latch edge time                                                                                               ;
+; 7.327   ; 3.327   ;    ;      ;        ;                   ; clock path                                                                                                    ;
+;   4.000 ;   0.000 ;    ;      ;        ;                   ; source latency                                                                                                ;
+;   4.000 ;   0.000 ;    ;      ; 1      ; PIN_W15           ; clk                                                                                                           ;
+;   4.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X57_Y0_N15 ; clk~input|i                                                                                                   ;
+;   4.702 ;   0.702 ; RR ; CELL ; 1      ; IOIBUF_X57_Y0_N15 ; clk~input|o                                                                                                   ;
+;   5.077 ;   0.375 ; RR ; IC   ; 1      ; CLKCTRL_G29       ; clk~inputclkctrl|inclk[0]                                                                                     ;
+;   5.077 ;   0.000 ; RR ; CELL ; 12624  ; CLKCTRL_G29       ; clk~inputclkctrl|outclk                                                                                       ;
+;   6.753 ;   1.676 ; RR ; IC   ; 1      ; FF_X58_Y60_N29    ; ofifo_instance|col_num[2].fifo_instance|fifo_mux_2_1c|gen[2].G2~41_NEW_REG29480|clk                           ;
+;   7.311 ;   0.558 ; RR ; CELL ; 1      ; FF_X58_Y60_N29    ; ofifo:ofifo_instance|fifo_depth64:col_num[2].fifo_instance|fifo_mux_2_1:fifo_mux_2_1c|gen[2].G2~41_OTERM29481 ;
+;   7.327 ;   0.016 ;    ;      ;        ;                   ; clock pessimism removed                                                                                       ;
+; 7.307   ; -0.020  ;    ;      ;        ;                   ; clock uncertainty                                                                                             ;
+; 7.325   ; 0.018   ;    ; uTsu ; 1      ; FF_X58_Y60_N29    ; ofifo:ofifo_instance|fifo_depth64:col_num[2].fifo_instance|fifo_mux_2_1:fifo_mux_2_1c|gen[2].G2~41_OTERM29481 ;
++---------+---------+----+------+--------+-------------------+---------------------------------------------------------------------------------------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+
